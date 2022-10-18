@@ -1,8 +1,19 @@
 
-<ul class="list-group" *ngFor="let post of posts">
-  <button (click)="onComments($event, post.id)"><li class="list-group-item" >{{post.id}} - {{post.body}}</li></button>
-  <div id="post.id" *ngIf="comment">
-    <p>{{comment.id}} - {{comment.body}}</p>
-  </div>
+<ul class="list-group" *ngFor="let post of posts" >
+  <button (click)="onComments($event, post.id)"><li class="list-group-item" >{{post.id}} - {{post.body}}
+    <div id="post.id" style="display:none;">
+
+    </div>
+  </li></button>
 </ul>
 
+<!-- <div *ngIf="posts">
+  <ul>
+    <li *ngFor="let post of posts; let i=index" (click)="onComments($event,post.id)" style="cursor:pointer">{{post.id}} - {{post.title}}
+      <div id="post.id" style="display:none;">
+
+      </div>
+    </li>
+
+  </ul>
+  </div> -->
