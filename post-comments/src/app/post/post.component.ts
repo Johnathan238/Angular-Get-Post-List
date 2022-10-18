@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe } from '@angular/core';
 import { PostServiceService } from '../service/post-service.service';
 import { Post, Comments } from '../interface/list-interface';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-post',
@@ -25,7 +26,7 @@ export class PostComponent implements OnInit {
     .subscribe((response: any) => {
     console.log(response);
     this.posts.push(...response)
-    console.log(this.posts);
+    // console.log(this.posts);
   })
   }
 
@@ -34,8 +35,14 @@ export class PostComponent implements OnInit {
     .subscribe((res: any) => {
       console.table(res)
       this.comments.push(...res)
-      console.table(this.comments)
+      // console.table(this.comments)
     })
+  }
+
+  onComments(){
+    // return this.postService.getComments()
+    // .pipe(map(comments => comments.postId))
+    console.log(this.comments[0].email)
   }
 
 }

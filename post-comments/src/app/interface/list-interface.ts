@@ -6,7 +6,7 @@ export interface Post{
 }
 
 export interface Comments{
-  postId: Post,
+  postId: Post[],
   id: number,
   name: string,
   email: string,
