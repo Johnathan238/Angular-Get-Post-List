@@ -1,7 +1,8 @@
 import { Component, OnInit, Pipe } from '@angular/core';
 import { PostServiceService } from '../service/post-service.service';
 import { Post, Comments } from '../interface/list-interface';
-import { map } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-post',
@@ -11,8 +12,11 @@ import { map } from 'rxjs';
 export class PostComponent implements OnInit {
   posts: Post[] = []
   comments: Comments[] = []
+  comment: any
+  commentsURL='https://jsonplaceholder.typicode.com/comments'
 
-  constructor(private postService: PostServiceService) { }
+  constructor(private postService: PostServiceService,
+              private http: HttpClient) { }
 
   ngOnInit(): void {
     this.getPosts()
@@ -39,10 +43,15 @@ export class PostComponent implements OnInit {
     })
   }
 
-  onComments(){
-    // return this.postService.getComments()
-    // .pipe(map(comments => comments.postId))
-    console.log(this.comments[0].email)
+  onComments(event: Event, id:Number){
+    this.http.get(`${this.commentsURL}?postId=${id}`)
+    .subscribe(data => this.comment = data)
+
+    let text = ""
+    for (let comment of this.comments){
+      text+=`<p>${comment.id} - ${comment.body}</p>`
+    }
+    console.table(this.comment)
   }
 
 }
