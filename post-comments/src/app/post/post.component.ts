@@ -51,6 +51,10 @@ export class PostComponent implements OnInit {
     for (let comment of this.comments){
       text+=`<p>${comment.id} - ${comment.body}</p>`
     }
+    let target:HTMLElement = event.target as HTMLElement
+    // let div:HTMLElement = target.lastChild as HTMLElement;
+    // div.innerHTML=text
+    // div.style.display=="none"?div.style.display="block":div.style.display="none"
     console.table(this.comment)
   }
 
